@@ -1,0 +1,96 @@
+<div class="row justify-content-center">
+  <div class="col-sm-11">
+
+    <div class="card">
+      <div class="card-header d-flex">
+        <h5 class="me-auto">Data Form</h5>
+      </div>
+
+      <div class="card-body">
+        <form [formGroup]="userForm" id="form-visitor" (ngSubmit)="onSubmit()" autocomplete="off">
+          <input autocomplete="off" name="hidden" type="text" style="display:none;">
+          <div class="row">
+
+            <div class="col-md-6">
+              <label class="form-label">Username</label>
+              <input formControlName="username" class="form-control" id="username">
+              <div *ngIf="userForm.controls['username'].invalid && (userForm.controls['username'].dirty || userForm.controls['username'].touched)" class="text-danger">
+                <small>
+                  At least 4 characters
+                </small>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input formControlName="email" class="form-control" id="email">
+              <div *ngIf="userForm.controls['email'].invalid && (userForm.controls['email'].dirty || userForm.controls['email'].touched)" class="text-danger">
+                <small>
+                  Check Email
+                </small>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Password</label>
+              <input formControlName="password" class="form-control" id="password">
+              <div *ngIf="userForm.controls['password'].invalid && (userForm.controls['password'].dirty || userForm.controls['password'].touched)" class="text-danger">
+                <small>
+                  Check Password
+                </small>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Confirm Password</label>
+              <input formControlName="confirmPassword" (keyup)="checkPasswords()" class="form-control" id="confirmPassword">
+              <div *ngIf="(userForm.controls['confirmPassword'].dirty || userForm.controls['confirmPassword'].touched)" class="text-danger">
+                <small *ngIf="passwordsMatch == false">
+                  Check Confirm Password
+                </small>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Gender</label>
+              <select formControlName="gender" class="form-select" id="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <!-- <option value="3">Empleado_Externo</option> -->
+              </select>
+              <div *ngIf="userForm.controls['gender'].invalid && (userForm.controls['gender'].dirty || userForm.controls['gender'].touched)" class="text-danger">
+                <small>
+                  Check Gender
+                </small>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-check mt-4">
+                <input formControlName="terms" class="form-check-input" type="checkbox" value="" id="checkChecked" checked>
+                <label class="form-check-label" for="checkChecked">
+                  Agree Terms
+                </label>
+              </div>
+              <div *ngIf="userForm.controls['terms'].invalid && (userForm.controls['terms'].dirty || userForm.controls['terms'].touched)" class="text-danger">
+                <small>
+                  Check Terms
+                </small>
+              </div>
+            </div>
+
+          </div>
+
+          <button [disabled]="userForm.invalid"  type="submit" class="btn btn-primary mt-4"> Submit Form </button>
+
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+
