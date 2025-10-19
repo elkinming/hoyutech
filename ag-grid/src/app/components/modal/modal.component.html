@@ -1,0 +1,61 @@
+ <div class="modal-header">
+			<h4 class="modal-title">User Information</h4>
+			<button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+		</div>
+		<div class="modal-body">
+			<div class="row justify-content-center">
+
+          <div class="col-sm-11">
+
+            <div class="card">
+
+              <div class="card-body">
+                <form [formGroup]="userForm" id="form-visitor" (ngSubmit)="onSubmit()" autocomplete="off">
+                  <input autocomplete="off" name="hidden" type="text" style="display:none;">
+                  <div class="row">
+
+                    <div class="col-md-12">
+                      <label class="form-label">Name</label>
+                      <input formControlName="name" class="form-control" id="name">
+                      <div *ngIf="userForm.controls['name'].invalid && (userForm.controls['name'].dirty || userForm.controls['name'].touched)" class="text-danger">
+                        <small>
+                          Field required
+                        </small>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <label class="form-label">Email</label>
+                      <input formControlName="email" class="form-control" id="email">
+                      <div *ngIf="userForm.controls['email'].invalid && (userForm.controls['email'].dirty || userForm.controls['email'].touched)" class="text-danger">
+                        <small>
+                          Field required
+                        </small>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <label class="form-label">Role</label>
+                      <input formControlName="role" class="form-control" id="role">
+                      <div *ngIf="userForm.controls['role'].invalid && (userForm.controls['role'].dirty || userForm.controls['role'].touched)" class="text-danger">
+                        <small>
+                          Field required
+                        </small>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-outline-secondary" (click)="closeModal()">Close</button>
+			<button type="button" [disabled]="!userForm.valid" (click)="onSubmit()" class="btn btn-outline-primary">Save</button>
+		</div>

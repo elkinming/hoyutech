@@ -1,7 +1,28 @@
-<div>
-  <ag-grid-angular
-    class="hi"
-    [rowData]="rowData"
-    [columnDefs]="colDefs"
-  ></ag-grid-angular>
+<div class="row">
+  <div class="col-8">
+    <button (click)="deleteSelectedUsers()" class="btn btn-outline-danger">Delete Selected Users</button>
+    <button (click)="addUser()" class="btn btn-outline-primary ms-2">Add User</button>
+    <button (click)="saveUsers()" class="btn btn-outline-primary ms-2">Save Users</button>
+  </div>
+  <div class="col-4">
+    <ngb-alert *ngIf="showSaveAlert" [@fadeSlideInOut] type="success" [dismissible]="false">Data Saved</ngb-alert>
+  </div>
+  
 </div>
+
+<ag-grid-angular
+      class="ag-theme-quartz mt-3"
+      style="height: 80vh;"
+      (gridReady)="onGridReady($event)"
+      (cellDoubleClicked)="onCellDoubleClicked($event)"
+      [rowData]="rowData"
+      [columnDefs]="colDefs"
+      [defaultColDef]="defaultColDef"
+      [pagination]="true"
+      [paginationAutoPageSize]="true"
+      [rowSelection]="rowSelection"
+      [getRowId]="getRowId"
+
+    >
+</ag-grid-angular>
+
